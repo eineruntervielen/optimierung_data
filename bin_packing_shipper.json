@@ -1,0 +1,20 @@
+[
+  {
+    "name": "truck_0",
+    "weight_limit": 1264,
+    "num_packages": 8,
+    "unit_weight": 258
+  },
+  {
+    "name": "truck_1",
+    "weight_limit": 1264,
+    "num_packages": 10,
+    "unit_weight": 478
+  },
+  {
+    "name": "truck_2",
+    "weight_limit": 1264,
+    "num_packages": 8,
+    "unit_weight": 399
+  }
+]
