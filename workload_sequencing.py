@@ -4,6 +4,9 @@ import random
 from dataclasses import dataclass, field
 from uuid import uuid4
 
+TAKT = 10
+STATIONEN = 20
+
 
 @dataclass(kw_only=True, frozen=True)
 class Job:
@@ -15,6 +18,6 @@ class Job:
 
 
 if __name__ == '__main__':
-    data = list(Job().__dict__ for _ in range(300))
+    data = list(Job().__dict__ for _ in range(20))
     with open(file="sequencing.json", mode="w", encoding="utf-8") as seq_json:
         json.dump(obj=data, fp=seq_json)
