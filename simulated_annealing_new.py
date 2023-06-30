@@ -55,7 +55,6 @@ def simulated_annealing(
                 current_solution = neighbor_solution
 
         temperature *= cooling_rate
-
     return best_solution
 
 
@@ -67,7 +66,7 @@ def generate_neighbor(jobs: list[Job]) -> list[Job]:
     return return_jobs
 
 
-def cost_function(jobs: list[Job]) -> int:
+def cost_function(jobs: list[Job], show: bool = False) -> int:
     if jobs:
         # jeder Job muss auf jeder Maschine bearbeitet werden.
         # Somit reicht es, die Anzahl der maschinen fpr den ersten
@@ -82,7 +81,8 @@ def cost_function(jobs: list[Job]) -> int:
                 # update
                 machines[task.on_machine].unavailable = current_time
                 machines[task.on_machine].tasks_to_start_time.append((current_time - task.task_time, task))
-        # pp(machines)
+        if show:
+            pp(machines)
 
         return max(machines.values(), key=lambda m: m.unavailable).unavailable
 
@@ -107,6 +107,6 @@ if __name__ == '__main__':
     cooling_rate = 0.8  # Set the cooling rate
     stopping_temperature = 1  # Set the stopping temperature
 
-    print("Initial solution:", cost_function(initial_solution))
+    print("Initial solution:", cost_function(initial_solution, True))
     best_solution = simulated_annealing(initial_solution, cost_function, temperature, cooling_rate, stopping_temperature)
-    print("Best solution:", cost_function(best_solution))
+    print("Best solution:", cost_function(best_solution, True))
